@@ -25,7 +25,9 @@
       "@providers/*": ["./src/providers/*"],
       "@assets": ["./src/assets"],
       "@assets/*": ["./src/assets/*"],
-      "@slices/*": ["./src/slices/*"]
+      "@slices/*": ["./src/slices/*"],
+      "@api/*": ["./src/api/*"],
+      "@api": ["./src/api"]
     },
 
     /* Bundler mode */

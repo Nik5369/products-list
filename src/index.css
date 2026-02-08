@@ -30,6 +30,7 @@
   --color-input: var(--input);
   --color-search-input: var(--search-input);
   --color-ring: var(--ring);
+  --color-row-active: var(--row-active);
 
   /* ===== КЛЮЧЕВЫЕ ЦВЕТА ===== */
   --color-primary: var(--primary);
@@ -91,6 +92,7 @@
   --input: oklch(92.191% 0.0001 271.152);
   --search-input: #f3f3f3;
   --ring: oklch(0.55 0.22 264);
+  --row-active: oklch(45.319% 0.10081 266.404);
 
   /* Ключевые цвета */
   --primary: oklch(0.55 0.22 264);

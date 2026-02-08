@@ -1,9 +1,10 @@
 export type TProduct = {
   id: number
-  name: string
-  vendor: string
+  title: string
+  brand: string
   category: string
-  articleNumber: string
+  sku: string
   rating: number
   price: number
+  thumbnail: string
 }

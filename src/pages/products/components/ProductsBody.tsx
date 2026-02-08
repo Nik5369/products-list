@@ -1,14 +1,36 @@
 import { Button } from '@components/ui'
-import type { TProduct } from '@slices/productsSlice'
+import { useAppDispatch, useAppSelector } from '@hooks'
+import {
+  getCurrentPage,
+  getProductsBySortThunk,
+  getProductsList,
+  getProductsLoading,
+  getProductsThunk,
+  getSortData,
+} from '@slices/productsSlice'
 import { PlusCircleIcon, RefreshCcw } from 'lucide-react'
-import type { FC } from 'react'
+import { useEffect, type FC } from 'react'
 import { ProductsTable } from './ProductsTable/ProductsTable'
-import { columnsNames } from './ProductsTable/const'
+import { columnsNames } from './ProductsTable/columns'
 
 type TProps = {}
 
 export const ProductsBody: FC<TProps> = (props) => {
   const {} = props
+  const dispatch = useAppDispatch()
+
+  const page = useAppSelector(getCurrentPage)
+  const products = useAppSelector(getProductsList)
+  const productsIsLoading = useAppSelector(getProductsLoading)
+  const { sortField, sortType } = useAppSelector(getSortData)
+
+  useEffect(() => {
+    if (sortType !== null) {
+      dispatch(getProductsBySortThunk({ page, sortField, sortType }))
+    } else {
+      dispatch(getProductsThunk(page))
+    }
+  }, [sortType])
 
   return (
     <div className="bg-background h-max  max-h-full rounded-t-xl p-7.5 flex-1">
@@ -26,128 +48,10 @@ export const ProductsBody: FC<TProps> = (props) => {
           </div>
         </div>
         <div className="">
-          <ProductsTable columns={columnsNames} data={mock_data} />
+          {' '}
+          <ProductsTable columns={columnsNames} data={products} loadingData={productsIsLoading} />
         </div>
       </div>
     </div>
   )
 }
-const mock_data: TProduct[] = [
-  {
-    articleNumber: 'KFANJSNW124$FWE',
-    category: 'smart',
-    name: 'vivo',
-    id: 1,
-    price: 1241242.22,
-    rating: 4.3,
-    vendor: 'china',
-  },
-  {
-    articleNumber: 'KFANJSNW124$FWE',
-    category: 'smart',
-    name: 'vivo',
-    id: 1,
-    price: 1241242.22,
-    rating: 4.3,
-    vendor: 'china',
-  },
-  {
-    articleNumber: 'KFANJSNW124$FWE',
-    category: 'smart',
-    name: 'vivo',
-    id: 1,
-    price: 1241242.22,
-    rating: 4.3,
-    vendor: 'china',
-  },
-  {
-    articleNumber: 'KFANJSNW124$FWE',
-    category: 'smart',
-    name: 'vivo',
-    id: 1,
-    price: 1241242.22,
-    rating: 4.3,
-    vendor: 'china',
-  },
-  {
-    articleNumber: 'KFANJSNW124$FWE',
-    category: 'smart',
-    name: 'vivo',
-    id: 1,
-    price: 1241242.22,
-    rating: 4.3,
-    vendor: 'china',
-  },
-  {
-    articleNumber: 'KFANJSNW124$FWE',
-    category: 'smart',
-    name: 'vivo',
-    id: 1,
-    price: 1241242.22,
-    rating: 4.3,
-    vendor: 'china',
-  },
-  {
-    articleNumber: 'KFANJSNW124$FWE',
-    category: 'smart',
-    name: 'vivo',
-    id: 1,
-    price: 1241242.22,
-    rating: 4.3,
-    vendor: 'china',
-  },
-  {
-    articleNumber: 'KFANJSNW124$FWE',
-    category: 'smart',
-    name: 'vivo',
-    id: 1,
-    price: 1241242.22,
-    rating: 4.3,
-    vendor: 'china',
-  },
-  {
-    articleNumber: 'KFANJSNW124$FWE',
-    category: 'smart',
-    name: 'vivo',
-    id: 1,
-    price: 1241242.22,
-    rating: 4.3,
-    vendor: 'china',
-  },
-  {
-    articleNumber: 'KFANJSNW124$FWE',
-    category: 'smart',
-    name: 'vivo',
-    id: 1,
-    price: 1241242.22,
-    rating: 4.3,
-    vendor: 'china',
-  },
-  {
-    articleNumber: 'KFANJSNW124$FWE',
-    category: 'smart',
-    name: 'vivo',
-    id: 1,
-    price: 1241242.22,
-    rating: 4.3,
-    vendor: 'china',
-  },
-  {
-    articleNumber: 'KFANJSNW124$FWE',
-    category: 'smart',
-    name: 'vivo',
-    id: 1,
-    price: 1241242.22,
-    rating: 4.3,
-    vendor: 'china',
-  },
-  {
-    articleNumber: 'KFANJSNW124$FWE',
-    category: 'smart',
-    name: 'vivo',
-    id: 1,
-    price: 1241242.22,
-    rating: 4.3,
-    vendor: 'china',
-  },
-]
