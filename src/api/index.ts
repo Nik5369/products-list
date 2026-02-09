@@ -1,5 +1,3 @@
-export { getProductsBySort } from './products/getProductsBySort'
-
 export { getSelectedProductIds } from './products/getSelectedProductIds'
 
 export { getProducts } from './products/getProducts'

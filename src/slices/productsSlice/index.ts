@@ -1,9 +1,6 @@
-export { getProductsBySortThunk } from './asyncThunks/getProductsBySortThunk'
-
 export { getAllSelectedProductsIdThunk } from './asyncThunks/getAllSelectedProductsIdThunk'
 
 export {
-  getCounterTotalCount,
   getCurrentPage,
   getMainCheckboxState,
   getProductsList,
@@ -11,6 +8,7 @@ export {
   getSearchText,
   getSelectedCheckboxes,
   getSortData,
+  getTotalCount,
 } from './selectors/productsSelectors'
 
 export { productsActions, productsReducer } from './productsSlice'

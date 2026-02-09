@@ -31,6 +31,7 @@
   --color-search-input: var(--search-input);
   --color-ring: var(--ring);
   --color-row-active: var(--row-active);
+  --color-pagination-active: var(--pagination-active);
 
   /* ===== КЛЮЧЕВЫЕ ЦВЕТА ===== */
   --color-primary: var(--primary);
@@ -79,9 +80,9 @@
   --background-tertiary: oklch(0.97 0 0);
 
   /* Текст */
-  --foreground: oklch(0.145 0 0);
+  --foreground: oklch(25.197% 0.00003 271.152);
   --foreground-secondary: oklch(0.556 0 0);
-  --foreground-tertiary: oklch(0.708 0 0);
+  --foreground-tertiary: oklch(70.9% 0.00008 271.152);
 
   /* Элементы */
   --card: oklch(1 0 0);
@@ -93,6 +94,7 @@
   --search-input: #f3f3f3;
   --ring: oklch(0.55 0.22 264);
   --row-active: oklch(45.319% 0.10081 266.404);
+  --pagination-active: oklch(64.15% 0.15802 278.539);
 
   /* Ключевые цвета */
   --primary: oklch(0.55 0.22 264);

@@ -1,10 +1,18 @@
 import { getProducts, type TProductsResponse } from '@api'
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { PRODUCTS_LIMIT_ON_PAGE } from '../const/const'
+import type { SORT_TYPES } from '../types/productsSchema'
 
-export const getProductsThunk = createAsyncThunk<TProductsResponse, number>('products/getProducts', async (page) => {
+type TProps = {
+  sortType: SORT_TYPES | null
+  sortField?: string
+  page: number
+  searchText?: string
+}
+
+export const getProductsThunk = createAsyncThunk<TProductsResponse, TProps>('products/getProducts', async (props) => {
   try {
-    const response = await getProducts(PRODUCTS_LIMIT_ON_PAGE, page)
+    const {} = props
+    const response = await getProducts(props)
 
     return response
   } catch (error) {

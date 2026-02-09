@@ -1,7 +1,6 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit'
 import type { TProductsIdsResponse, TProductsResponse } from '../../api'
 import { getAllSelectedProductsIdThunk } from './asyncThunks/getAllSelectedProductsIdThunk'
-import { getProductsBySortThunk } from './asyncThunks/getProductsBySortThunk'
 import { getProductsThunk } from './asyncThunks/getProductsThunk'
 import type { TProductsSchema } from './types/productsSchema'
 
@@ -33,13 +32,11 @@ const productsSlice = createSlice({
         state.sort.sortField = ''
         state.sort.sortType = null
       }
+      state.page = 0
     },
     offMainCheckbox(state) {
       state.mainCheckbox = false
       state.selectedCheckboxes = new Set()
-    },
-    setPage(state, { payload }: PayloadAction<number>) {
-      state.page = payload
     },
     toggleCheckbox(state, { payload }: PayloadAction<number>) {
       if (state.selectedCheckboxes.has(payload)) {
@@ -50,6 +47,16 @@ const productsSlice = createSlice({
       } else {
         state.selectedCheckboxes.add(payload)
       }
+    },
+    setSearchText(state, { payload }: PayloadAction<string>) {
+      state.searchText = payload
+      state.page = 0
+    },
+    setPage(state, { payload }: PayloadAction<number>) {
+      state.page = payload
+    },
+    resetState() {
+      return initialState
     },
   },
   extraReducers: (builder) => {
@@ -62,17 +69,6 @@ const productsSlice = createSlice({
       state.isLoading = false
     })
     builder.addCase(getProductsThunk.rejected, (state) => {
-      state.isLoading = false
-    })
-
-    builder.addCase(getProductsBySortThunk.pending, (state) => {
-      state.isLoading = true
-    })
-    builder.addCase(getProductsBySortThunk.fulfilled, (state, { payload }: PayloadAction<TProductsResponse>) => {
-      state.products = payload.products
-      state.isLoading = false
-    })
-    builder.addCase(getProductsBySortThunk.rejected, (state) => {
       state.isLoading = false
     })
 

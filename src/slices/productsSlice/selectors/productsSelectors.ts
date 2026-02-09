@@ -3,7 +3,7 @@ import { createSelector } from '@reduxjs/toolkit'
 
 const getProducts = (state: TStoreSchema) => state.products
 
-export const getCounterTotalCount = createSelector(getProducts, (products) => products.totalCount)
+export const getTotalCount = createSelector(getProducts, (products) => products.totalCount)
 export const getProductsList = createSelector(getProducts, (products) => products.products)
 export const getMainCheckboxState = createSelector(getProducts, (products) => products.mainCheckbox)
 export const getCurrentPage = createSelector(getProducts, (products) => products.page)

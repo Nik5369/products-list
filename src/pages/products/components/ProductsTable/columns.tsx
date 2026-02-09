@@ -45,26 +45,26 @@ export const columnsNames: ColumnDef<TProduct>[] = [
   },
   {
     accessorKey: 'title',
-    header: () => <p className="text-regular text-base text-gray-500">Наименование</p>,
+    header: () => <p className="font-medium text-base text-gray-500">Наименование</p>,
     cell: ({ row }) => (
       <div className="flex items-center gap-3 relative">
         <img className="w-12 h-12 bg-gray-200 rounded shrink-0" alt="product logo" src={row.original.thumbnail} />
         <div>
           <p className="font-bold text-base">{row.original.title}</p>
-          <p className="text-regular text-sm text-gray-500">{row.original.category}</p>
+          <p className="font-medium text-sm text-gray-500 text-left">{row.original.category}</p>
         </div>
       </div>
     ),
   },
   {
     accessorKey: 'brand',
-    header: () => <p className="text-regular text-base text-gray-500">Вендор</p>,
+    header: () => <p className="font-medium text-base text-gray-500">Вендор</p>,
     cell: ({ row }) => <p className="font-bold text-base">{row.original.brand}</p>,
   },
 
   {
     accessorKey: 'sku',
-    header: () => <p className="cursor-pointer text-regular text-base text-gray-500">Артикул</p>,
+    header: () => <p className="  font-medium text-base text-gray-500">Артикул</p>,
     cell: ({ row }) => <p className="font-regular text-base">{row.original.sku}</p>,
   },
   {
@@ -78,7 +78,7 @@ export const columnsNames: ColumnDef<TProduct>[] = [
         dispatch(productsActions.setSort(header.id))
       }
       return (
-        <p className="flex justify-center cursor-pointer text-regular text-base text-gray-500" onClick={toggleSort}>
+        <p className="flex justify-center cursor-pointer font-medium text-base text-gray-500" onClick={toggleSort}>
           {sortField === 'rating' && (sortType == 'asc' ? <ChevronDown /> : <ChevronUp />)} Оценка
         </p>
       )
@@ -102,7 +102,7 @@ export const columnsNames: ColumnDef<TProduct>[] = [
       }
 
       return (
-        <p className="flex justify-center cursor-pointer text-regular text-base text-gray-500" onClick={toggleSort}>
+        <p className="flex justify-center cursor-pointer font-medium text-base text-gray-500" onClick={toggleSort}>
           {sortField === 'price' && (sortType == 'asc' ? <ChevronDown /> : <ChevronUp />)} Цена, ₽
         </p>
       )
