@@ -78,9 +78,6 @@ const productsSlice = createSlice({
       state.selectedCheckboxes = newSelectedCheckBoxes
       state.mainCheckbox = true
     })
-    // builder.addCase(getAllSelectedProductsIdThunk.rejected, (state) => {
-    //   //добавить  toast, если не прошло
-    // })
   },
 })
 

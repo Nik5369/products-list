@@ -1,6 +1,7 @@
 import { type ColumnDef, flexRender, getCoreRowModel, getPaginationRowModel, useReactTable } from '@tanstack/react-table'
 
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
+import { cn } from '@lib'
 import { TableSkeleton } from './TableSkeleton'
 
 type TProps<TData, TValue> = {
@@ -22,9 +23,20 @@ export const ProductsTable = <TData, TValue>(props: TProps<TData, TValue>) => {
     if (table.getRowModel().rows?.length) {
       return table.getRowModel().rows.map((row) => (
         <TableRow key={row.id} data-state={row.getIsSelected() && 'selected'} className="relative">
-          {row.getVisibleCells().map((cell) => {
+          {row.getVisibleCells().map((cell, columnIndex) => {
+            const isCheckboxColumn = columnIndex === 0
+            const isTitleColumn = columnIndex === 1
+
             return (
-              <TableCell className="py-3 p-x2 text-center" key={cell.id}>
+              <TableCell
+                key={cell.id}
+                className={cn(
+                  'py-3 px-2 text-center',
+                  !isTitleColumn && 'whitespace-nowrap',
+                  isTitleColumn && 'whitespace-normal break-words max-w-[320px] text-left',
+                  isCheckboxColumn && 'w-[48px] px-2 text-left',
+                )}
+              >
                 {flexRender(cell.column.columnDef.cell, cell.getContext())}
               </TableCell>
             )
@@ -48,7 +60,10 @@ export const ProductsTable = <TData, TValue>(props: TProps<TData, TValue>) => {
       <Table>
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (
-            <TableRow key={headerGroup.id} className="[&>*:not(:nth-child(2))]:text-center">
+            <TableRow
+              key={headerGroup.id}
+              className="[&>*:not(:nth-child(2))]:text-center [&>*:first-child]:w-[48px] [&>*:first-child]:px-2"
+            >
               {headerGroup.headers.map((header) => {
                 return (
                   <TableHead key={header.id} className="py-6 ">

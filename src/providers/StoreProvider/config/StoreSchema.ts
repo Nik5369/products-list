@@ -1,6 +1,7 @@
 import type { TProductsSchema } from '@slices/productsSlice'
+import type { TUserSchema } from '@slices/userSlice'
 
 export interface TStoreSchema {
-  //   User: TUserSchema
   products: TProductsSchema
+  user: TUserSchema
 }

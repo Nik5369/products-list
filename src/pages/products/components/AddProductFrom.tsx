@@ -7,7 +7,7 @@ import { toast } from 'sonner'
 type TProductForm = {
   title: string
   brand: string
-  price: number
+  price: number | null
   sku: string
 }
 
@@ -22,11 +22,11 @@ export const AddProductForm: FC = () => {
     defaultValues: {
       title: '',
       brand: '',
-      price: 0,
+      price: null,
       sku: '',
     },
   })
-
+  console.log(watch())
   const onSubmit = (data: TProductForm) => {
     toast.success('Товар успешно создан', { position: 'bottom-center' })
     console.log('Form data:', data)
@@ -35,7 +35,11 @@ export const AddProductForm: FC = () => {
   const watchedFields = watch()
 
   const isFormFilled =
-    watchedFields.title.trim() !== '' && watchedFields.brand.trim() !== '' && watchedFields.price > 0 && watchedFields.sku.trim() !== ''
+    watchedFields.title.trim() !== '' &&
+    watchedFields.brand.trim() !== '' &&
+    watchedFields.price !== null &&
+    watchedFields.price > 0 &&
+    watchedFields.sku.trim() !== ''
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">

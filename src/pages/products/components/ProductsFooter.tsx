@@ -16,7 +16,7 @@ export const ProductsFooter: FC<TProps> = (props) => {
 
   return (
     <div className="flex justify-between pb-13 px-7.5 bg-background">
-      <div className="text-lg font-medium text-gray-500">
+      <div className="text-lg font-medium text-muted-foreground">
         Показано{' '}
         <span className="text-foreground">
           {start}-{end < totalCount ? end : totalCount}
